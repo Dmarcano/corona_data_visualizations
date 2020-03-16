@@ -1,6 +1,6 @@
 const jsondb = require('node-json-db')
 const express = require('express')
-const corona_lib = require('./lib')
+const corona_lib = require('../../lib')
 const app = express()
 const port = 8080
 
@@ -27,5 +27,5 @@ function load_db()
 
 
 // country_wide_data()
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-// corona_lib.update_db()
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+corona_lib.update_db()
