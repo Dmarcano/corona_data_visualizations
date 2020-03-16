@@ -1,0 +1,1 @@
+const corona_lib = require('../../lib/lib')
