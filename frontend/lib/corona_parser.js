@@ -64,10 +64,10 @@ function calculate_country_totals(data, data_label)
 
 async function parse_github_url(url, data_label, time_series)
 {
-
+  // makes an http request at a url which we assume is part of JHU's github repository for COVID-19 Data
+  // https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
   let raw_data = await(fetch(url).then(resp => resp.text()))
   let rows = Papa.parse(raw_data);
-  // let rows = (raw_data.split('\n')).map(row => split_rows_sout_korea(row))
   let labels = rows.data.shift()
 
   // for each row,  create a time series hiearchy, country => region =>  time_series and location
@@ -91,6 +91,7 @@ async function parse_github_url(url, data_label, time_series)
 
 async function parse_time_series()
 {
+  // TODO CHANGE THE HIEARCHY Currently Country->label->providence/total->data should change into Country->providence/total->label->data
   let confirmed_cases_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
   let deaths_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
   let recovered_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
