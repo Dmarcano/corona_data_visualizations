@@ -1,25 +1,16 @@
+/*
+Corona Github Repository Data Parser
+
+A set of library functions meant to parse the Johns Hopkins COVID-19 Rate repositories
+found at  https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
+HTTP requests are made on the raw mode of the CSV files and the files are parsed and returns an object with the following hierarchy:
+
+country_data/time_series_labels -> Country Name -> providences/State Names -> data labels (confirmed cases, dead cases, recovered cases) ->
+
+*/
+
 const fetch = require('node-fetch')
-const jsondb = require('node-json-db')
 const Papa = require('papaparse')
-const config = require('node-json-db/dist/lib/JsonDBConfig')
-
-Date.prototype.addDays = function(days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-}
-
-function getDates(startDate, stopDate) {
-    var dateArray = new Array();
-    var currentDate = startDate;
-    while (currentDate < stopDate) {
-        dateArray.push(new Date (currentDate));
-        currentDate = currentDate.addDays(1);
-    }
-    return dateArray;
-}
-
-
 
 function calculate_country_totals(data, data_label)
 {
@@ -30,7 +21,7 @@ function calculate_country_totals(data, data_label)
 
     function merge_providence_data(country_data, country_key, label_idx, total_country_data, data_label)
     {   
-      //TODO FIX HARD CODING OF CONFIRMED CASES
+      
         let country = country_data[country_key];
         let providence_keys = Object.keys(country[data_label].providences)
 
@@ -65,7 +56,7 @@ function calculate_country_totals(data, data_label)
 async function parse_github_url(url, data_label, time_series)
 {
   // makes an http request at a url which we assume is part of JHU's github repository for COVID-19 Data
-  // https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
+  //
   let raw_data = await(fetch(url).then(resp => resp.text()))
   let rows = Papa.parse(raw_data);
   let labels = rows.data.shift()
@@ -91,6 +82,10 @@ async function parse_github_url(url, data_label, time_series)
 
 async function parse_time_series()
 {
+  /*
+
+
+  */
   // TODO CHANGE THE HIEARCHY Currently Country->label->providence/total->data should change into Country->providence/total->label->data
   let confirmed_cases_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
   let deaths_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
@@ -101,15 +96,41 @@ async function parse_time_series()
   await parse_github_url(recovered_url, 'Recovered', time_series).catch(err => console.log("The following error has occured parsing the repo", err))
   return time_series
 
+  
+
+    /*
+    hiearchy we want 
+
+    {
+      labels: []
+      data :{
+        "US" : {
+          Providences: {
+            "Washgtinton" : {
+              confirmed : {times_series : [], totals : []}
+              dead : {times_series : [], totals : []}
+              recovered : {times_series : [], totals : []}
+            }
+            "LA" : {
+              confirmed : {times_series : [], totals : []}
+              dead : {times_series : [], totals : []}
+              recovered : {times_series : [], totals : []}
+            }
+          }
+          totals : {
+            dead : [],
+            confirmed : []
+            recovered : []
+          }
+        }
+      }
+    }
+    */
 }
-
-
-
 
 function assign_row(row, labels, time_series, data_label){
     // for each row check if it has a "Providence or State" if not then we set providence to '0
     var providence = row[0] == "" ? 0 : row[0]
-
     let providence_data = {
       lat:row[2],
       long: row[3],
@@ -123,13 +144,11 @@ function assign_row(row, labels, time_series, data_label){
 
     if(!time_series.hasOwnProperty(row[1])){
       // create a row for the country if the country has not been seen yet.
-      time_series[row[1]] = { }
+      time_series[row[1]] = {providences : {} , totals : {} }
     }
+    
+    let providences_data = time_series[row[1]].providences;
 
-    if(!time_series[row[1]].hasOwnProperty(data_label)){
-      time_series[row[1]][data_label] = {providences : {} , totals : {}}
-    }
-    let providences_data = time_series[row[1]][data_label].providences;
 
     providences_data[providence] = providence_data 
   }
