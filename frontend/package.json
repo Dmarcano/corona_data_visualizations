@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.0",
     "node-json-db": "^1.0.3",
@@ -22,6 +23,7 @@
     "react-dom": "^16.13.0",
     "react-markdown": "^4.3.1",
     "react-plotly.js": "^2.4.0",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "swr": "^0.1.18"
   }
 }
