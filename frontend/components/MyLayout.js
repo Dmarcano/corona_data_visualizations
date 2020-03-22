@@ -7,7 +7,7 @@ const layoutStyle = {
 }
 
 const Layout  = props => (
-    <div style = {layoutStyle}>
+    <div>
         <Header / >
         {props.children}
     </div>

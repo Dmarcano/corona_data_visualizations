@@ -1,5 +1,5 @@
 /*
-    Module that gives a simple API to update a JSON file based database and get JSON data from it./
+    Module that gives a simple API to update a JSON file based database and get JSON data from it.
 */
 
 const jsondb = require('node-json-db')
@@ -7,7 +7,7 @@ const corona_lib = require('./corona_parser')
 const config = require('node-json-db/dist/lib/JsonDBConfig')
 
 
-const DEBUG = true; // this is for dev purposes
+const DEBUG = false; // this is for dev purposes
 
 async function update_db( data_path = "")
 {  
@@ -29,7 +29,6 @@ function get_corona_data(data_path = "")
     return corona_data;
 }
 
-update_db()
 
 module.exports = {
     get_corona_data : get_corona_data,
