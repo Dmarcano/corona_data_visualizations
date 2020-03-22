@@ -21,6 +21,8 @@ once npm is done installing all the dependencies, run the next js server using
 npm run dev
 ```
 
+Navigate on most major browsers to ```http://localhost:3000/``` to open the webpage
+
 ## Data API
 
 Anyone can consume the data API to get a formatted JSON representation of the JHU Covid-19 Case data. The API is consumed using the next-js server API route ```/api/time_series ```
