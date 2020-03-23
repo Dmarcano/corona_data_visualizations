@@ -1,4 +1,5 @@
 import Header from './header'
+import Container from '@material-ui/core/Container'
 
 const layoutStyle = {
     margin : 20, 
@@ -9,9 +10,9 @@ const layoutStyle = {
 const Layout  = props => (
     <div>
         <Header / >
-            <div style = {layoutStyle}>
+            <Container maxWidth="sm">
                 {props.children}
-            </div>
+            </Container>
     </div>
 )
 

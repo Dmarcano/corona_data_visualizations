@@ -71,7 +71,7 @@ let CountrySummary = (props) => {
     const styles = useStyles();
     return (
       <> 
-        <Card className = {styles.root}>
+        <Card className = {styles.root} variant = 'outlined'>
             <CardContent>
                 <Typography className = {styles.title} color = 'textPrimary'>
                    {country_name} New Case Statistics As of {latest_date}:
