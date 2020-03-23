@@ -2,23 +2,16 @@ import Layout from '../components/MyLayout';
 import Link from 'next/link';
 
 /*
-code for dynamic url page
+TODO add no SSR for both the leaflet map and the plotly js plots. Example below
 
-function getPosts() {
-   return [
-     { id: 'hello-nextjs', title: 'Hello Next.js' },
-     { id: 'learn-nextjs', title: 'Learn Next.js is awesome' },
-     { id: 'deploy-nextjs', title: 'Deploy apps with ZEIT' }
-   ];
- }
- 
- const PostLink = ({ post }) => (
-   <li>
-     <Link href="/p/[id]" as={`/p/${post.id}`}>
-       <a>{post.title}</a>
-     </Link>
-   </li>
- );
+
+
+import dynamic from 'next/dynamic'
+
+const DynamicPlot = dynamic(import('../components/plot'), {
+  ssr: false
+})
+
 */
 
 function getPages(){
@@ -35,7 +28,9 @@ function getPages(){
    </li>
  )
  
- export default function Blog() {
+ export default function Index() {
+   debugger;
+
    return (
      <Layout>
        <h1>COVID-19 Quick site</h1>

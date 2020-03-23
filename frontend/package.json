@@ -21,9 +21,13 @@
     "plotly.js": "^1.52.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-leaflet": "^2.6.3",
     "react-markdown": "^4.3.1",
     "react-plotly.js": "^2.4.0",
     "save": "^2.4.0",
     "swr": "^0.1.18"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }

@@ -1,0 +1,6 @@
+/*
+A component which displays a table of different countries in a way to quantify the differences in different types of data.
+
+This table is best suited for displaying cumulative data
+
+*/

@@ -3,13 +3,15 @@ import Header from './header'
 const layoutStyle = {
     margin : 20, 
     padding : 20, 
-    border : '1px solid #DDD'
+    // border : '1px solid #DDD'
 }
 
 const Layout  = props => (
     <div>
         <Header / >
-        {props.children}
+            <div style = {layoutStyle}>
+                {props.children}
+            </div>
     </div>
 )
 
