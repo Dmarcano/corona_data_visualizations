@@ -2,9 +2,9 @@ import React from 'react'
 import Plot from 'react-plotly.js';
 
 
-export default function LineChart()
+export default function LineChart(props)
 {
-    
+    const data = props.data; 
     // let data = props.data
     return (
         <div>

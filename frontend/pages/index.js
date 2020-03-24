@@ -1,6 +1,10 @@
 import Layout from '../components/MyLayout';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
+const DynamicLinePlot = dynamic(import('../components/Vis Components/LineChart'), {
+  ssr: false
+})
 /*
 TODO add no SSR for both the leaflet map and the plotly js plots. Example below
 
@@ -14,40 +18,42 @@ const DynamicPlot = dynamic(import('../components/plot'), {
 
 */
 
-function getPages(){
+
+
+function getPages() {
   return [
-    {id: "sample", url:'/sample', title : "Sample Covid Summary"}
+    { id: "sample", url: '/sample', title: "Sample Covid Summary" }
   ]
 }
 
- const DirectLink = ({page}) =>(
-   <li>
-     <Link href ={page.url}>
-       <a>{page.title}</a>
-     </Link>
-   </li>
- )
- 
- export default function Index() {
-   debugger;
+const DirectLink = ({ page }) => (
+  <li>
+    <Link href={page.url}>
+      <a>{page.title}</a>
+    </Link>
+  </li>
+)
 
-   return (
-     <Layout>
-       <h1>COVID-19 Quick site</h1>
-       <p>
-         This page has some sample information and links on using the current API
-          The link below takes to a page using sample information gathered from the data API 
+export default function Index() {
+  debugger;
+
+  return (
+    <Layout>
+      <h1>COVID-19 Quick site</h1>
+      <p>
+        This page has some sample information and links on using the current API
+        The link below takes to a page using sample information gathered from the data API
        </p>
 
-         {getPages().map(post => (
-           <DirectLink key={post.id} page={post} />
-         ))}
+      {getPages().map(post => (
+        <DirectLink key={post.id} page={post} />
+      ))}
 
-         <p>
-           The button below links to the API url. Calling an HTTP request to the url below from any application will yield the following json response <br/>
-           <a href = '/api/time_series'>API Call</a>
-         </p>
-       <style jsx>{`
+      <p>
+        The button below links to the API url. Calling an HTTP request to the url below from any application will yield the following json response <br />
+        <a href='/api/time_series'>API Call</a>
+      </p>
+      <style jsx>{`
          h1,
          a {
            font-family: 'Arial';
@@ -71,6 +77,8 @@ function getPages(){
            opacity: 0.6;
          }
        `}</style>
-     </Layout>
-   );
- }
+      <DynamicLinePlot data={{ x: [1, 2, 3, 4] }} />
+
+    </Layout>
+  );
+}

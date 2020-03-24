@@ -1,4 +1,56 @@
 {
+  "../components/Vis Components/CountryLineChart": [
+    {
+      "id": "./components/Vis Components/CountryLineChart.js",
+      "name": "./components/Vis Components/CountryLineChart.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/plotly.js/dist/plotly.js",
+      "name": "./node_modules/plotly.js/dist/plotly.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/react-plotly.js/factory.js",
+      "name": "./node_modules/react-plotly.js/factory.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    },
+    {
+      "id": "./node_modules/react-plotly.js/react-plotly.js",
+      "name": "./node_modules/react-plotly.js/react-plotly.js",
+      "file": "static/chunks/2.js",
+      "publicPath": "static/chunks/2.js"
+    }
+  ],
+  "../components/Vis Components/LineChart": [
+    {
+      "id": "./components/Vis Components/LineChart.js",
+      "name": "./components/Vis Components/LineChart.js",
+      "file": "static/chunks/1.js",
+      "publicPath": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/plotly.js/dist/plotly.js",
+      "name": "./node_modules/plotly.js/dist/plotly.js",
+      "file": "static/chunks/1.js",
+      "publicPath": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/react-plotly.js/factory.js",
+      "name": "./node_modules/react-plotly.js/factory.js",
+      "file": "static/chunks/1.js",
+      "publicPath": "static/chunks/1.js"
+    },
+    {
+      "id": "./node_modules/react-plotly.js/react-plotly.js",
+      "name": "./node_modules/react-plotly.js/react-plotly.js",
+      "file": "static/chunks/1.js",
+      "publicPath": "static/chunks/1.js"
+    }
+  ],
   "./dev/noop": [
     {
       "id": "./node_modules/next/dist/client/dev/noop.js",

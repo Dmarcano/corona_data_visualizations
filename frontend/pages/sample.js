@@ -1,8 +1,13 @@
 import Layout from '../components/MyLayout'
 // import LineChart from '../components/visComponents/linechart'
-import useSWR from 'swr';
 import fetch from 'node-fetch'
 import CountrySummary from '../components/Country Data Components/CountrySummary'
+
+import dynamic from 'next/dynamic';
+
+const CountryLinePlot = dynamic(import('../components/Vis Components/CountryLineChart'), {
+  ssr: false
+})
 
 
 const Sample = (props) =>{
@@ -23,6 +28,8 @@ const Sample = (props) =>{
 
   const countries = [Italy, USA, SKorea]
   const country_names = ['Italy', 'USA', 'South Korea']
+  // console.log(labels)
+  console.log(USA.totals)
 
   return (
     <div>
@@ -35,6 +42,8 @@ const Sample = (props) =>{
                 < CountrySummary  key ={ country_names[index]} country_name = {country_names[index]} country_data = {country_data} labels = {labels} />
               ))}
              
+             <p>Below is a line chart for USA confirmed cases</p>
+             <CountryLinePlot labels = {labels} country_data = {USA} />
             
         </Layout>
     </div>
