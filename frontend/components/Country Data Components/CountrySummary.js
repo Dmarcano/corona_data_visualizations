@@ -34,23 +34,19 @@ const get_latest_totals = totals =>(
     {
         Confirmed: totals.Confirmed[totals.Confirmed.length - 1],
         Deaths: totals.Deaths[totals.Deaths.length - 1],
-        Recovered: totals.Recovered[totals.Recovered.length - 1]
     }
 )
 
 const get_daily_new = country_data => {
     const confirmed_length = country_data.Confirmed.length;
     const death_length = country_data.Deaths.length;
-    const recovered_length = country_data.Recovered.length;
 
     const confirmed_totals = country_data.Confirmed[confirmed_length - 1] - country_data.Confirmed[confirmed_length - 2];
     const death_totals = country_data.Deaths[death_length - 1] - country_data.Deaths[death_length - 2];
-    const recovered_totals =  country_data.Recovered[recovered_length - 1] - country_data.Recovered[recovered_length - 2];
 
     return({
         Confirmed: confirmed_totals,
         Deaths: death_totals,
-        Recovered: recovered_totals
     })
 }
 

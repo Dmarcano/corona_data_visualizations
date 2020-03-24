@@ -109,7 +109,8 @@ function assign_row(row, labels, time_series, data_label){
   for(let i = 4; i < labels.length; i++)
   {
     // assign the time series data from january 22nd(start of epidemic) until the latest data available
-    providence_data.time_series[data_label].push(parseInt(row[i]))
+    let num = isNaN(parseInt(row[i])) ? 0 : parseInt(row[i]);
+    providence_data.time_series[data_label].push(num);
   }
   // probably redundant in cases where we reuse the old providence data  
   country_data.providences[providence] = providence_data 
@@ -122,13 +123,13 @@ async function parse_time_series()
 
   */
   // TODO CHANGE THE HIEARCHY Currently Country->label->providence/total->data should change into Country->providence/total->label->data
-  let confirmed_cases_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
-  let deaths_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
-  let recovered_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
+  let confirmed_cases_url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+  let deaths_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+  // let recovered_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
   let time_series = {data:{}, labels: []}
   await parse_github_url(confirmed_cases_url, 'Confirmed', time_series).catch(err => console.log("The following error has occured parsing the repo", err))
   await parse_github_url(deaths_url, 'Deaths', time_series).catch(err => console.log("The following error has occured parsing the repo", err))
-  await parse_github_url(recovered_url, 'Recovered', time_series).catch(err => console.log("The following error has occured parsing the repo", err))
+  // await parse_github_url(recovered_url, 'Recovered', time_series).catch(err => console.log("The following error has occured parsing the repo", err))
   return time_series
 
   
@@ -138,10 +139,6 @@ async function parse_time_series()
 
 
 
-
-/*
-   
-    */
     
   // parse_time_series()
     module.exports = {

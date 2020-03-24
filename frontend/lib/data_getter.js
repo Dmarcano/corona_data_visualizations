@@ -29,6 +29,7 @@ function get_corona_data(data_path = "")
     return corona_data;
 }
 
+// update_db()
 
 module.exports = {
     get_corona_data : get_corona_data,
